@@ -27,9 +27,7 @@ public class Book {
         }
 
         Book targetBook = (Book) obj;
-
-        boolean isEqual = Objects.equals(number, targetBook.number);
-        return isEqual;
+        return Objects.equals(number, targetBook.number);
     }
 
     @Override

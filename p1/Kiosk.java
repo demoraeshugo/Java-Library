@@ -3,29 +3,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
-interface ioFields {
-    String startPrompt = "Library Kiosk running.";
-    String endPrompt = "Kiosk session ended";
-    String validDateLog = "%s added to the bag.%n";
-    String invalidDateLog = "Invalid Date!";
-    String validRemoveLog = "Book#%s removed%n";
-    String invalidRemoveLog = "Unable to remove, the library does not have this book.";
-    String validCheckOutLog = "You've checked out Book#%s. Enjoy!%n";
-    String invalidCheckOutLog = "Book#%s is not available.%n";
-    String validReturnLog = "Book#%s return has completed. Thanks%n";
-    String invalidReturnLog = "Unable to return Book#%s%n";
-    String invalidCommand = "Invalid Command";
-    String quitCommand = "Q";
-    String addCommand = "A";
-    String removeCommand = "R";
-    String checkOutCommand = "O";
-    String returnCommand = "I";
-    String printCommand = "PA";
-    String printDateCommand = "PD";
-    String printNumberCommand = "PN";
-}
-
-public class Kiosk implements ioFields {
+public class Kiosk {
     private final Library library;
     private String userInput;
     private String[] tokens;
@@ -39,22 +17,15 @@ public class Kiosk implements ioFields {
     }
 
     private void handleUserInput() {
-        if( userInput.equals(addCommand) ) {
-            handleAdd();
-        } else if( userInput.equals(removeCommand) ) {
-            handleRemove();
-        } else if( userInput.equals(checkOutCommand) ) {
-            handleCheckOut();
-        } else if( userInput.equals(returnCommand) ) {
-            handleReturn();
-        } else if( userInput.equals(printCommand) ) {
-            handlePrint();
-        } else if( userInput.equals(printDateCommand) ) {
-            handlePrintDate();
-        } else if( userInput.equals(printNumberCommand) ) {
-            handlePrintNumber();
-        } else if(!userInput.equals(quitCommand)) {
-            System.out.println(invalidCommand);
+        switch (userInput) {
+            case "A" -> handleAdd();
+            case "R" -> handleRemove();
+            case "O" -> handleCheckOut();
+            case "I" -> handleReturn();
+            case "PA" -> handlePrint();
+            case "PD" -> handlePrintDate();
+            case "PN" -> handlePrintNumber();
+            default -> System.out.println(IoFields.invalidCommand);
         }
     }
 
@@ -65,9 +36,9 @@ public class Kiosk implements ioFields {
         if(publishDate.isValid()) {
             String serialNumber = library.getNewSerialNumber();
             library.add(new Book( serialNumber, title, publishDate ));
-            System.out.printf(validDateLog, title);
+            System.out.printf(IoFields.validDateLog, title);
         } else {
-            System.out.println(invalidDateLog);
+            System.out.println(IoFields.invalidDateLog);
         }
     }
 
@@ -76,9 +47,9 @@ public class Kiosk implements ioFields {
         Book targetBook = new Book(serialNumber);
 
         if(library.remove(targetBook)) {
-            System.out.printf(validRemoveLog, serialNumber);
+            System.out.printf(IoFields.validRemoveLog, serialNumber);
         } else {
-            System.out.println(invalidRemoveLog);
+            System.out.println(IoFields.invalidRemoveLog);
         }
     }
 
@@ -87,9 +58,9 @@ public class Kiosk implements ioFields {
         Book targetBook = new Book(serialNumber);
 
         if(library.checkOut(targetBook)) {
-            System.out.printf(validCheckOutLog, serialNumber);
+            System.out.printf(IoFields.validCheckOutLog, serialNumber);
         } else {
-            System.out.printf(invalidCheckOutLog, serialNumber);
+            System.out.printf(IoFields.invalidCheckOutLog, serialNumber);
         }
     }
 
@@ -98,12 +69,11 @@ public class Kiosk implements ioFields {
         Book targetBook = new Book(serialNumber);
 
         if(library.returns(targetBook)) {
-            System.out.printf(validReturnLog, serialNumber);
+            System.out.printf(IoFields.validReturnLog, serialNumber);
         } else {
-            System.out.printf(invalidReturnLog, serialNumber);
+            System.out.printf(IoFields.invalidReturnLog, serialNumber);
         }
     }
-
 
     private void handlePrint() {
         // Todo
@@ -120,32 +90,38 @@ public class Kiosk implements ioFields {
     // Manual input
     public void run() {
         Scanner scan = new Scanner(System.in);
+        String quitCommand = "Q";
 
         do {
              tokens = tokenize(scan.nextLine());
              userInput = tokens[0];
-             handleUserInput();
+            if(!userInput.equals(quitCommand)){
+                handleUserInput();
+            }
         } while(!userInput.equals(quitCommand) );
 
-        System.out.println(endPrompt);
+        System.out.println(IoFields.endPrompt);
     }
 
     // Auto input from file
     public void runTest() {
         File file = new File("p1/testCases.txt");
-        System.out.println(startPrompt);
+        System.out.println(IoFields.startPrompt);
+        String quitCommand = "Q";
 
         try (Scanner sc = new Scanner(file, StandardCharsets.UTF_8.name())) {
             do {
                 tokens = tokenize(sc.nextLine());
                 userInput = tokens[0];
-                handleUserInput();
+                if(!userInput.equals(quitCommand)){
+                    handleUserInput();
+                }
             } while(!userInput.equals(quitCommand) && sc.hasNextLine());
         }
         catch (IOException e) {
             e.printStackTrace();
         }
 
-        System.out.println(endPrompt);
+        System.out.println(IoFields.endPrompt);
     }
 }

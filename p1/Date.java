@@ -21,55 +21,56 @@ public class Date {
         day = Integer.parseInt(tokens[2]);
     }
 
-    private int getDaysInMonth() {
-        int numDays;
-        switch (month) {
-            case 1: case 3: case 5:
-            case 7: case 8: case 10:
-            case 12:
-                numDays = 31;
-                break;
-            case 4: case 6:
-            case 9: case 11:
-                numDays = 30;
-                break;
-            case 2:
-                if (((year % 4 == 0) & !(year % 100 == 0)) || (year % 400 == 0)) {
-                    numDays = 29;
-                } else {
-                    numDays = 28;
-                }
-                break;
-            default:
-                numDays = 0;
-                break;
+    enum Month {
+        JANUARY,
+        FEBRUARY,
+        MARCH,
+        APRIL,
+        MAY,
+        JUNE,
+        JULY,
+        AUGUST,
+        SEPTEMBER,
+        OCTOBER,
+        NOVEMBER,
+        DECEMBER
+    }
+
+    private int getFebruaryDays() {
+        if (((year % 4 == 0) & !(year % 100 == 0)) || (year % 400 == 0)) {
+            return 29;
+        } else {
+            return 28;
         }
-        return numDays;
+    }
+
+    private int getDaysInMonth() {
+        Month[] monthArray = Month.values();
+
+        // subtract 1 for array based matching
+        return switch(monthArray[month-1]){
+            case JANUARY, MARCH, MAY, JULY, AUGUST, OCTOBER, DECEMBER -> 31;
+            case APRIL, JUNE, SEPTEMBER, NOVEMBER -> 30;
+            case FEBRUARY -> getFebruaryDays();
+        };
     }
 
     public boolean isValid() {
-        boolean isValid = true;
         Date today = new Date();
         int yearLeftBound = 1900;
         int yearRightBound = today.year;
         int monthLeftBound = 1;
         int monthRightBound = 12;
 
-        // year less than 1900 or a date beyond today’s date is invalid.
+        // check for invalid year
         if(year < yearLeftBound || year > yearRightBound
                 || (year == yearRightBound && month > today.month)
                 || (year == yearRightBound && month == today.month && day > today.day)) {
-            isValid = false;
-        }
-
-        if(month < monthLeftBound || month > monthRightBound ) {
-            isValid = false;
-        }
-
-        if(day > getDaysInMonth()) {
-            isValid = false;
-        }
-
-        return isValid;
-     }
+            return false;
+        // check for invalid month
+        } else if(month < monthLeftBound || month > monthRightBound ) {
+            return false;
+        // check for invalid day
+        } else return day <= getDaysInMonth();
+    }
 }

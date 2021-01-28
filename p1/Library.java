@@ -27,10 +27,12 @@ public class Library {
     private void grow() {
         // create new array of length current + 4
         Book[] newBag = new Book[books.length + sizeFactor];
+
         // copy over all elements from current to new array
-        int srcPos = 0;
-        int destPos = 0;
-        System.arraycopy(books, srcPos, newBag, destPos, books.length);
+        for(int i = 0; i < books.length; i++){
+            newBag[i] = books[i];
+        }
+
         // set new array as the books property
         books = newBag;
     }
@@ -46,44 +48,60 @@ public class Library {
         if (numBooks == books.length - 1) {
             grow();
         }
+
         books[numBooks] = book;
         numBooks++;
     }
 
+
     // removes a book if it exists
     public boolean remove(Book book) {
         int indexOfBook = find(book);
-        if(indexOfBook != -1) {
-            /* The method will copy all elements from the source array (books) starting one position right of
-            the index. The elements will be copied into the same array (books) starting exactly at indexOfBook.
-            The result will be a perceived shifting of all elements right of the element we wanted to remove. */
-            System.arraycopy(books, indexOfBook + 1, books, indexOfBook, books.length - indexOfBook - 1);
-            return true;
-        } else {
+
+        // case book not found
+        if(indexOfBook == -1) {
             return false;
         }
+
+        for(int i = 0; i < books.length; i++) {
+            // last elem will always be null by virtue of one being removed
+            if(i+1 == books.length) {
+                books[i] = null;
+                break;
+            }
+            // from the target index to end, shift elements to the left
+            if(i >= indexOfBook) {
+                books[i] = books[i+1];
+            }
+        }
+
+        return true;
     }
 
     // checks out a book if available
     public boolean checkOut(Book book) {
         int indexOfBook = find(book);
-        if(indexOfBook != -1 && !books[indexOfBook].getCheckedOut()) {
-            books[indexOfBook].checkOut();
-            return true;
-        } else {
+
+        // if book not found or is already checked out
+        if(indexOfBook == -1 || books[indexOfBook].getCheckedOut()) {
             return false;
         }
+
+        books[indexOfBook].checkOut();
+        return true;
     }
 
     // returns a book if possible
     public boolean returns(Book book) {
         int indexOfBook = find(book);
-        if(indexOfBook != -1) {
-            books[indexOfBook].checkIn();
-            return true;
-        } else {
+
+        if(indexOfBook == -1) {
             return false;
         }
+
+        books[indexOfBook].checkIn();
+        return true;
+
     }
 
     // print the list of books in the bag
