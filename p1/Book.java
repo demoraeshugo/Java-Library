@@ -1,5 +1,7 @@
+import java.util.Objects;
+
 public class Book {
-    private String number; // a 5-digit serial number unique to the book
+    private final String number; // a 5-digit serial number unique to the book
     private String name;
     private boolean checkedOut;
     private Date datePublished;
@@ -10,9 +12,24 @@ public class Book {
         this.datePublished = datePublished;
     }
 
+    Book(String number) {
+        this.number = number;
+    }
+
     @Override
     public boolean equals(Object obj) {
-        return this == obj;
+        if(this == obj) {
+            return true;
+        }
+
+        if(obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+
+        Book targetBook = (Book) obj;
+
+        boolean isEqual = Objects.equals(number, targetBook.number);
+        return isEqual;
     }
 
     @Override
@@ -27,6 +44,10 @@ public class Book {
 
         // ex: Book#10007::Design Patterns::5/30/1996::is available.
         return "Book#" + this.number + "::" + this.name + "::" + datePublished + "::" + isAvailable;
+    }
+
+    public boolean getCheckedOut() {
+        return checkedOut;
     }
 
     void checkOut() {

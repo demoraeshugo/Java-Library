@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="173.0" y="1586.0">com</node>
+    <node x="980.0" y="1511.0">images</node>
+    <node x="570.0" y="1511.0">netscape</node>
+    <node x="338.0" y="1586.0">org</node>
+    <node x="0.0" y="544.0">ioFields</node>
+    <node x="0.0" y="1511.0">toolbarButtonGraphics</node>
+    <node x="503.0" y="1586.0">sun</node>
+    <node x="370.6875" y="0.0">Date</node>
+    <node x="338.7708333333333" y="1412.0">RunProject1</node>
+    <node x="668.0" y="1586.0">jdk</node>
+    <node x="775.0" y="1511.0">META-INF</node>
+    <node x="1358.0" y="1511.0">apple</node>
+    <node x="309.0" y="1511.0">groovyjarjarasm</node>
+    <node x="0.0" y="1586.0">java</node>
+    <node x="1169.0" y="1511.0">groovy</node>
+    <node x="1539.0" y="1511.0">javax</node>
+    <node x="285.5208333333333" y="239.0">Book</node>
+    <node x="992.6875" y="15.1328125">groovyjarjarpicocli</node>
+    <node x="635.6875" y="15.1328125">groovyjarjarcommonscli</node>
+    <node x="321.7708333333333" y="1064.0">Kiosk</node>
+    <node x="249.0" y="586.5">Library</node>
+    <node x="1325.6875" y="15.1328125">groovyjarjarantlr</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="Kiosk" target="Date">
+      <point x="86.625" y="-149.0" />
+      <point x="507.3958333333333" y="1044.0" />
+      <point x="517.0208333333333" y="1044.0" />
+      <point x="517.0208333333333" y="214.0" />
+      <point x="528.1875" y="214.0" />
+      <point x="67.5" y="94.5" />
+    </edge>
+    <edge source="Book" target="Date">
+      <point x="-52.5" y="-127.5" />
+      <point x="338.0208333333333" y="214.0" />
+      <point x="393.1875" y="214.0" />
+      <point x="-67.5" y="94.5" />
+    </edge>
+    <edge source="Kiosk" target="ioFields">
+      <point x="-86.625" y="-149.0" />
+      <point x="334.1458333333333" y="1044.0" />
+      <point x="57.25" y="1044.0" />
+      <point x="-57.25" y="225.0" />
+    </edge>
+    <edge source="Kiosk" target="Book">
+      <point x="37.125" y="-149.0" />
+      <point x="457.8958333333333" y="1024.0" />
+      <point x="482.7708333333333" y="1024.0" />
+      <point x="482.7708333333333" y="514.0" />
+      <point x="474.5208333333333" y="514.0" />
+      <point x="84.0" y="127.5" />
+    </edge>
+    <edge source="groovyjarjarantlr" target="groovyjarjarantlr">
+      <point x="77.33333333333331" y="15.0" />
+      <point x="1519.0208333333333" y="85.1328125" />
+      <point x="1285.6875" y="85.1328125" />
+      <point x="1285.6875" y="20.1328125" />
+      <point x="-116.0" y="-10.0" />
+    </edge>
+    <edge source="Library" target="Book">
+      <point x="-67.0" y="-182.5" />
+      <point x="282.5" y="524.0" />
+      <point x="306.5208333333333" y="524.0" />
+      <point x="-84.0" y="127.5" />
+    </edge>
+    <edge source="groovyjarjarcommonscli" target="groovyjarjarcommonscli">
+      <point x="90.66666666666669" y="15.0" />
+      <point x="862.3541666666667" y="85.1328125" />
+      <point x="595.6875" y="85.1328125" />
+      <point x="595.6875" y="20.1328125" />
+      <point x="-136.0" y="-10.0" />
+    </edge>
+    <edge source="Kiosk" target="Library">
+      <point x="-37.125" y="-149.0" />
+      <point x="383.6458333333333" y="1024.0" />
+      <point x="299.25" y="1024.0" />
+      <point x="-50.25" y="182.5" />
+    </edge>
+    <edge source="groovyjarjarpicocli" target="groovyjarjarpicocli">
+      <point x="82.66666666666669" y="15.0" />
+      <point x="1199.3541666666667" y="85.1328125" />
+      <point x="952.6875" y="85.1328125" />
+      <point x="952.6875" y="20.1328125" />
+      <point x="-124.0" y="-10.0" />
+    </edge>
+    <edge source="RunProject1" target="Kiosk">
+      <point x="0.0" y="-27.0" />
+      <point x="0.0" y="149.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="730.0" y="550.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
