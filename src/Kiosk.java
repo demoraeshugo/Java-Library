@@ -89,17 +89,14 @@ public class Kiosk {
     }
 
     private void handlePrintAll() {
-        // Todo
         library.print();
     }
 
     private void handlePrintByDate() {
-        // Todo
         library.printByDate();
     }
 
     private void handlePrintByNumber() {
-        // Todo
         library.printByNumber();
     }
 
