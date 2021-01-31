@@ -122,7 +122,7 @@ public class Kiosk {
 
     // Auto input from file
     public void runTest() {
-        File file = new File("p1/testCases.txt");
+        File file = new File("src/testCases.txt");
         String quitCommand = "Q";
 
         try (Scanner sc = new Scanner(file, StandardCharsets.UTF_8.name())) {
