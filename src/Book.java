@@ -1,3 +1,8 @@
+/***
+ * @author Hugo DeMorales
+ * @author Jonathan Dong
+ */
+
 import java.util.Objects;
 
 public class Book {

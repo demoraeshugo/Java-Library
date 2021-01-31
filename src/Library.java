@@ -2,7 +2,7 @@ public class Library {
     private Book[] books; // array-based implementation of the bag data structure
     private int numBooks; // the number of books currently in the bag
     private int currentSerialNumber;
-    private final int sizeFactor = 4;
+    private static final int sizeFactor = 4;
 
     // default constructor to create an empty bag
     public Library() {

@@ -18,14 +18,15 @@ public class Kiosk {
 
     private void handleUserInput() {
         switch (userInput) {
-            case "A" -> handleAdd();
-            case "R" -> handleRemove();
-            case "O" -> handleCheckOut();
-            case "I" -> handleReturn();
-            case "PA" -> handlePrint();
-            case "PD" -> handlePrintDate();
-            case "PN" -> handlePrintNumber();
-            default -> System.out.println(IoFields.invalidCommand);
+            case "A" : handleAdd();
+            case "R" : handleRemove();
+            case "O" : handleCheckOut();
+            case "I" : handleReturn();
+            case "PA" : handlePrint();
+            case "PD" : handlePrintDate();
+            case "PN" : handlePrintNumber();
+            default : System.out.println(IoFields.invalidCommand);
+            // check up on this later that this is a valid use of sout
         }
     }
 
@@ -105,7 +106,7 @@ public class Kiosk {
 
     // Auto input from file
     public void runTest() {
-        File file = new File("p1/testCases.txt");
+        File file = new File("src/testCases.txt");
         System.out.println(IoFields.startPrompt);
         String quitCommand = "Q";
 

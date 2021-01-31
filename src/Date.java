@@ -48,11 +48,13 @@ public class Date {
         Month[] monthArray = Month.values();
 
         // subtract 1 for array based matching
-        return switch(monthArray[month-1]){
-            case JANUARY, MARCH, MAY, JULY, AUGUST, OCTOBER, DECEMBER -> 31;
-            case APRIL, JUNE, SEPTEMBER, NOVEMBER -> 30;
-            case FEBRUARY -> getFebruaryDays();
-        };
+//        return switch(monthArray[month-1]){
+//            case JANUARY, MARCH, MAY, JULY, AUGUST, OCTOBER, DECEMBER -> 31;
+//            case APRIL, JUNE, SEPTEMBER, NOVEMBER -> 30;
+//            case FEBRUARY -> getFebruaryDays();
+     //   };
+        //temporarily returning 0 until i can fix that ^
+        return 0;
     }
 
     public boolean isValid() {
