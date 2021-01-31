@@ -1,3 +1,8 @@
+/***
+ * @author Hugo DeMorales
+ * @author Jonathan Dong
+ */
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -7,26 +12,33 @@ public class Kiosk {
     private final Library library;
     private String userInput;
     private String[] tokens;
+    private int currentSerialNumber;
 
     public Kiosk() {
         library = new Library();
+        currentSerialNumber = 10001;
     }
 
     private String[] tokenize(String input) {
         return input.split(",");
     }
 
+    // helper method to generate serial numbers
+    private String getNewSerialNumber() {
+        return Integer.toString(currentSerialNumber++);
+    }
+
     private void handleUserInput() {
         switch (userInput) {
-            case "A" : handleAdd();
-            case "R" : handleRemove();
-            case "O" : handleCheckOut();
-            case "I" : handleReturn();
-            case "PA" : handlePrint();
-            case "PD" : handlePrintDate();
-            case "PN" : handlePrintNumber();
-            default : System.out.println(IoFields.invalidCommand);
-            // check up on this later that this is a valid use of sout
+            case Commands.add -> handleAdd();
+            case Commands.remove -> handleRemove();
+            case Commands.checkOut -> handleCheckOut();
+            case Commands.checkIn -> handleReturn();
+            case Commands.printAll -> handlePrintAll();
+            case Commands.printByDate -> handlePrintByDate();
+            case Commands.printByNumber -> handlePrintByNumber();
+            case Commands.runTest -> runTest();
+            default -> System.out.println(IoFields.invalidCommand);
         }
     }
 
@@ -35,7 +47,7 @@ public class Kiosk {
         Date publishDate = new Date(tokens[2]);
 
         if(publishDate.isValid()) {
-            String serialNumber = library.getNewSerialNumber();
+            String serialNumber = getNewSerialNumber();
             library.add(new Book( serialNumber, title, publishDate ));
             System.out.printf(IoFields.validDateLog, title);
         } else {
@@ -76,26 +88,30 @@ public class Kiosk {
         }
     }
 
-    private void handlePrint() {
+    private void handlePrintAll() {
         // Todo
+        library.print();
     }
 
-    private void handlePrintDate() {
+    private void handlePrintByDate() {
         // Todo
+        library.printByDate();
     }
 
-    private void handlePrintNumber() {
+    private void handlePrintByNumber() {
         // Todo
+        library.printByNumber();
     }
 
     // Manual input
     public void run() {
         Scanner scan = new Scanner(System.in);
         String quitCommand = "Q";
+        System.out.println(IoFields.startPrompt);
 
         do {
-             tokens = tokenize(scan.nextLine());
-             userInput = tokens[0];
+            tokens = tokenize(scan.nextLine());
+            userInput = tokens[0];
             if(!userInput.equals(quitCommand)){
                 handleUserInput();
             }
@@ -106,8 +122,7 @@ public class Kiosk {
 
     // Auto input from file
     public void runTest() {
-        File file = new File("src/testCases.txt");
-        System.out.println(IoFields.startPrompt);
+        File file = new File("p1/testCases.txt");
         String quitCommand = "Q";
 
         try (Scanner sc = new Scanner(file, StandardCharsets.UTF_8.name())) {

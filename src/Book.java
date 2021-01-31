@@ -11,14 +11,14 @@ public class Book {
     private boolean checkedOut;
     private Date datePublished;
 
+    Book(String number) {
+        this.number = number;
+    }
+
     Book(String number, String name, Date datePublished) {
         this.number = number;
         this.name = name;
         this.datePublished = datePublished;
-    }
-
-    Book(String number) {
-        this.number = number;
     }
 
     @Override
@@ -46,11 +46,23 @@ public class Book {
         }
 
         // ex: Book#10007::Design Patterns::5/30/1996::is available.
-        return "Book#" + this.number + "::" + this.name + "::" + datePublished + "::" + isAvailable;
+        return "Book#" + this.number + "::" + this.name + "::" + datePublished.toString() + "::" + isAvailable;
     }
 
     public boolean getCheckedOut() {
         return checkedOut;
+    }
+
+    private String getNumber() {
+        return number;
+    }
+
+    public Date getDatePublished() {
+        return datePublished;
+    }
+
+    public static Boolean isGreaterNumber(Book book1, Book book2) {
+        return Integer.parseInt(book1.getNumber()) > Integer.parseInt(book2.getNumber());
     }
 
     void checkOut() {

@@ -1,6 +1,10 @@
+/***
+ * @author Hugo DeMorales
+ * @author Jonathan Dong
+ */
+
 public class RunProject1 {
     public static void main(String[] args) {
-        new Kiosk().runTest();
-        System.out.println("test");
+        new Kiosk().run();
     }
 }
