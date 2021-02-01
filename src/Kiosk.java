@@ -2,6 +2,9 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
+/*
+Note that before we hand it in we gotta get rid of everything except Scanner
+ */
 
 public class Kiosk {
     private final Library library;
@@ -16,15 +19,29 @@ public class Kiosk {
         return input.split(",");
     }
 
-    private void handleUserInput() {
+    private void handleUserInput(String userInput) {
         switch (userInput) {
-            case "A" : handleAdd();
-            case "R" : handleRemove();
-            case "O" : handleCheckOut();
-            case "I" : handleReturn();
-            case "PA" : handlePrint();
-            case "PD" : handlePrintDate();
-            case "PN" : handlePrintNumber();
+            case "A" :
+                handleAdd();
+                break;
+            case "R" :
+                handleRemove();
+                break;
+            case "O" :
+                handleCheckOut();
+                break;
+            case "I" :
+                handleReturn();
+                break;
+            case "PA" :
+                handlePrint();
+                break;
+            case "PD" :
+                handlePrintDate();
+                break;
+            case "PN" :
+                handlePrintNumber();
+                break;
             default : System.out.println(IoFields.invalidCommand);
             // check up on this later that this is a valid use of sout
         }
@@ -97,7 +114,7 @@ public class Kiosk {
              tokens = tokenize(scan.nextLine());
              userInput = tokens[0];
             if(!userInput.equals(quitCommand)){
-                handleUserInput();
+                handleUserInput( userInput);
             }
         } while(!userInput.equals(quitCommand) );
 
@@ -115,7 +132,7 @@ public class Kiosk {
                 tokens = tokenize(sc.nextLine());
                 userInput = tokens[0];
                 if(!userInput.equals(quitCommand)){
-                    handleUserInput();
+                    handleUserInput(userInput);
                 }
             } while(!userInput.equals(quitCommand) && sc.hasNextLine());
         }

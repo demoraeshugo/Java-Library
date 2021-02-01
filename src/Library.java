@@ -106,7 +106,9 @@ public class Library {
 
     // print the list of books in the bag
     public void print() {
-        // Todo
+        for(int i = 0; i < books.length; i++){
+            System.out.println(books[i].toString());
+        }
     }
 
     // print the list of books by datePublished (ascending)
@@ -118,4 +120,6 @@ public class Library {
     public void printByNumber() {
         // Todo
     }
+
+
 }

@@ -3,7 +3,7 @@
  * @author Jonathan Dong
  */
 
-import java.util.Objects;
+//import java.util.Objects;
 
 public class Book {
     private final String number; // a 5-digit serial number unique to the book
@@ -23,6 +23,16 @@ public class Book {
 
     @Override
     public boolean equals(Object obj) {
+//        if(this == obj) {
+//            return true;
+//        }
+//
+//        if(obj == null || getClass() != obj.getClass()) {
+//            return false;
+//        }
+//
+//        Book targetBook = (Book) obj;
+//        return Objects.equals(number, targetBook.number);
         if(this == obj) {
             return true;
         }
@@ -32,8 +42,12 @@ public class Book {
         }
 
         Book targetBook = (Book) obj;
-        return Objects.equals(number, targetBook.number);
+        return ( targetBook.number.equals(((Book) obj).number));
+
+
     }
+
+
 
     @Override
     public String toString() {
