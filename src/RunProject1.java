@@ -1,5 +1,5 @@
 /***
- * @author Hugo DeMorales
+ * @author Hugo De Moraes
  * @author Jonathan Dong
  */
 
