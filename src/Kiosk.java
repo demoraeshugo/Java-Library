@@ -12,20 +12,13 @@ public class Kiosk {
     private final Library library;
     private String userInput;
     private String[] tokens;
-    private int currentSerialNumber;
 
     public Kiosk() {
         library = new Library();
-        currentSerialNumber = 10001;
     }
 
     private String[] tokenize(String input) {
         return input.split(",");
-    }
-
-    // helper method to generate serial numbers
-    private String getNewSerialNumber() {
-        return Integer.toString(currentSerialNumber++);
     }
 
     private void handleUserInput() {
@@ -47,7 +40,7 @@ public class Kiosk {
         Date publishDate = new Date(tokens[2]);
 
         if(publishDate.isValid()) {
-            String serialNumber = getNewSerialNumber();
+            String serialNumber = Book.getCurrentSerialNumber();
             library.add(new Book( serialNumber, title, publishDate ));
             System.out.printf(IoFields.validDateLog, title);
         } else {

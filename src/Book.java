@@ -10,6 +10,7 @@ public class Book {
     private String name;
     private boolean checkedOut;
     private Date datePublished;
+    static int currentSerialNumber = 10001;
 
     Book(String number) {
         this.number = number;
@@ -46,30 +47,22 @@ public class Book {
         }
 
         // ex: Book#10007::Design Patterns::5/30/1996::is available.
-        return "Book#" + this.number + "::" + this.name + "::" + datePublished.toString() + "::" + isAvailable;
+        return "Book#" + number + "::" + name + "::" + datePublished.toString() + "::" + isAvailable;
+    }
+
+    public static String getCurrentSerialNumber() {
+        return String.valueOf(currentSerialNumber++);
     }
 
     public boolean getCheckedOut() {
         return checkedOut;
     }
 
-    private String getNumber() {
-        return number;
-    }
-
-    public Date getDatePublished() {
-        return datePublished;
-    }
-
-    public static Boolean isGreaterNumber(Book book1, Book book2) {
-        return Integer.parseInt(book1.getNumber()) > Integer.parseInt(book2.getNumber());
-    }
-
-    void checkOut() {
+    public void checkOut() {
         this.checkedOut = true;
     }
 
-    void checkIn() {
+    public void checkIn() {
         this.checkedOut = false;
     }
 }
