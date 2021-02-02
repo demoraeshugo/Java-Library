@@ -43,12 +43,6 @@ public class Date {
         return day;
     }
 
-    public static boolean isGreaterDate(Date date1, Date date2) {
-        return (date1.getYear() < date2.getYear())
-                || ( date1.getYear() == date2.getYear() && date1.getMonth() < date2.getMonth() )
-                || ( date1.getYear() == date2.getYear() && date1.getMonth() == date2.getMonth() && date1.getDay() <= date2.getDay());
-    }
-
     private int getFebruaryDays() {
         if (((year % Quadrennial == 0) & !(year % Centennial == 0)) || (year % Quatercentennial == 0)) {
             return 29;
@@ -57,7 +51,7 @@ public class Date {
         }
     }
 
-    private int getDaysInMonth() {
+    private int getDaysInMonth(int month) {
         // this.month is 1 based 1:12, Calendar class is 0 based 0:11
         int indexOfMonth = month-1;
         int maxMonth = 12;
@@ -87,26 +81,33 @@ public class Date {
         };
     }
 
-    public boolean isValid() {
+    private boolean isValidYear(int year) {
         Date today = new Date();
-
         int yearLeftBound = 1900;
         int yearRightBound = today.year;
 
+        return (year >= yearLeftBound && year < yearRightBound)
+                || (year == yearRightBound && month < today.month)
+                || (year == yearRightBound && month == today.month && day <= today.day);
+    }
+
+    private boolean isValidMonth(int month) {
         int monthLeftBound = 1;
         int monthRightBound = 12;
 
-        boolean validYear = (year >= yearLeftBound || year < yearRightBound
-                || (year == yearRightBound && month < today.month)
-                || (year == yearRightBound && month == today.month && day <= today.day));
-        boolean validMonth = month >= monthLeftBound && month <= monthRightBound;
-        boolean validDay = day <= getDaysInMonth();
+        return month >= monthLeftBound && month <= monthRightBound;
+    }
 
-        return validYear && validMonth && validDay;
+    private boolean isValidDay(int day) {
+        return day <= getDaysInMonth(month);
+    }
+
+    public boolean isValid() {
+        return isValidYear(year) && isValidMonth(month) && isValidDay(day);
     }
 
     @Override
     public String toString() {
-        return getMonth() + "/" + getDay() + "/" + getYear();
+        return month + "/" + day + "/" + year;
     }
 }
