@@ -94,15 +94,18 @@ public class Kiosk {
     }
 
     private void handlePrint() {
-        // Todo
+        library.print();
     }
 
     private void handlePrintDate() {
-        // Todo
+        library.sortByDate();
+        library.printByDate();
     }
 
     private void handlePrintNumber() {
-        // Todo
+        library.sortByNumber();
+        library.printByNumber();
+
     }
 
     // Manual input

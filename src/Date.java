@@ -1,7 +1,7 @@
 public class Date {
-    private final int year;
-    private final int month;
-    private final int day;
+    private int year;
+    private int month;
+    private  int day;
 
     //constant declarations
     public final int JANUARYMONTHNUM = 1;
@@ -37,6 +37,18 @@ public class Date {
         year = Integer.parseInt(tokens[0]);
         month = Integer.parseInt(tokens[1]);
         day = Integer.parseInt(tokens[2]);
+    }
+
+
+
+    public int getYear(){
+        return this.year;
+    }
+    public int getMonth(){
+        return this.month;
+    }
+    public int getDay(){
+        return this.day;
     }
 
     enum Month {
@@ -92,6 +104,7 @@ public class Date {
             case MARCHMONTHNUM:
             case MAYMONTHNUM:
             case JULYMONTHNUM:
+            case AUGUSTMONTHNUM:
             case OCTOBERMONTHNUM:
             case DECEMBERMONTHNUM:
                 numDays = 31;

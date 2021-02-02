@@ -1,11 +1,11 @@
 /***
- * @author Hugo DeMorales
+ * @author Hugo DeMoraes
  * @author Jonathan Dong
  */
 
 //import java.util.Objects;
 
-public class Book {
+public class Book  {
     private final String number; // a 5-digit serial number unique to the book
     private String name;
     private boolean checkedOut;
@@ -20,6 +20,62 @@ public class Book {
     Book(String number) {
         this.number = number;
     }
+
+    public String getBookNumber(){
+        return this.number;
+    }
+
+    public Date getDatePublished(){
+        return this.datePublished;
+    }
+
+
+    public int compareByNumber(Book b) {
+        if(Integer.parseInt(this.getBookNumber()) > Integer.parseInt(b.getBookNumber())){
+            return 1;
+        }
+        else if (Integer.parseInt(this.getBookNumber()) == Integer.parseInt(b.getBookNumber())){
+            return 0;
+        }
+        else {
+            return -1;
+        }
+
+
+    }
+
+    public int compareByDate(Book b) {
+        if(this.getDatePublished().getYear() < b.getDatePublished().getYear()){
+            return -1;
+        }
+        else if (this.getDatePublished().getYear() > b.getDatePublished().getYear()){
+            return 1;
+
+        }
+        else {
+            if (this.getDatePublished().getMonth() < b.getDatePublished().getMonth()){
+                return -1;
+            }
+            else if ( this.getDatePublished().getMonth() > b.getDatePublished().getMonth()){
+                return 1;
+            }
+            else{
+                if ( this.getDatePublished().getDay() < b.getDatePublished().getDay()){
+                    return -1;
+                }
+                else if(this.getDatePublished().getDay() > b.getDatePublished().getDay()){
+                    return 1;
+                }
+                else {
+                    return 0;
+                }
+            }
+        }
+
+
+    }
+
+
 
     @Override
     public boolean equals(Object obj) {
@@ -60,7 +116,8 @@ public class Book {
         }
 
         // ex: Book#10007::Design Patterns::5/30/1996::is available.
-        return "Book#" + this.number + "::" + this.name + "::" + datePublished + "::" + isAvailable;
+        return "Book#" + this.number + "::" + this.name + "::" + this.datePublished.getMonth() +
+                "/" + this.datePublished.getDay() + "/" + this.datePublished.getYear() + "::" + isAvailable;
     }
 
     public boolean getCheckedOut() {

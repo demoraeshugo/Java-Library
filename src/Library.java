@@ -9,7 +9,47 @@ public class Library {
         books = new Book[sizeFactor];
         numBooks = 0;
         currentSerialNumber = 10001;
-    } 
+    }
+
+    public void sortByNumber(){
+        int n = numBooks;
+
+        // One by one move boundary of unsorted subarray
+        for (int i = 0; i < n-1; i++)
+        {
+            // Find the minimum element in unsorted array
+            int min_idx = i;
+            for (int j = i+1; j < n; j++)
+                if (books[j].compareByNumber(books[min_idx]) == -1)
+                    min_idx = j;
+
+            // Swap the found minimum element with the first
+            // element
+            Book temp = books[min_idx];
+            books[min_idx] = books[i];
+            books[i] = temp;
+        }
+    }
+
+    public void sortByDate(){
+        int n = numBooks;
+
+        // One by one move boundary of unsorted subarray
+        for (int i = 0; i < n-1; i++)
+        {
+            // Find the minimum element in unsorted array
+            int min_idx = i;
+            for (int j = i+1; j < n; j++)
+                if (books[j].compareByDate(books[min_idx]) == -1)
+                    min_idx = j;
+
+            // Swap the found minimum element with the first
+            // element
+            Book temp = books[min_idx];
+            books[min_idx] = books[i];
+            books[i] = temp;
+        }
+    }
 
     // helper method to find a book in the bag
     private int find(Book book) {
@@ -107,18 +147,32 @@ public class Library {
     // print the list of books in the bag
     public void print() {
         for(int i = 0; i < books.length; i++){
+            if(books[i] != null)
             System.out.println(books[i].toString());
         }
     }
 
     // print the list of books by datePublished (ascending)
     public void printByDate() {
-        // Todo
+        for(int i = 0; i < books.length; i++){
+            if(books[i] != null)
+                System.out.println(books[i].toString());
+        }
     }
 
     // print the list of books by number (ascending)
     public void printByNumber() {
-        // Todo
+//        sortByNumber(books);
+//        for(int i = 0; i < books.length; i++){
+//            if(books[i] != null)
+//                System.out.println(books[i].toString());
+//        }
+
+        for(int i = 0; i < books.length; i++){
+            if(books[i] != null)
+                System.out.println(books[i].toString());
+        }
+
     }
 
 
