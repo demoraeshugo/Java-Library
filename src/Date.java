@@ -109,6 +109,7 @@ public class Date {
     @Override
     public String toString() {
         return month + "/" + day + "/" + year;
+    }
 
     public static void main(String[] args) {
         String[] validTests = { "02/29/2004", "02/29/2008", "12/31/1998", "04/30/2009", "02/25/2020" };
