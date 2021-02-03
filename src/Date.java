@@ -43,7 +43,7 @@ public class Date {
         return day;
     }
 
-    private int getFebruaryDays() {
+    private int getFebruaryDays(int year) {
         if (((year % Quadrennial == 0) & !(year % Centennial == 0)) || (year % Quatercentennial == 0)) {
             return 29;
         } else {
@@ -76,8 +76,8 @@ public class Date {
                             Calendar.SEPTEMBER,
                             Calendar.NOVEMBER -> 30;
             case
-                    Calendar.FEBRUARY -> getFebruaryDays();
-            default -> 0;
+                    Calendar.FEBRUARY -> getFebruaryDays(year);
+            default -> -1;
         };
     }
 
@@ -99,7 +99,7 @@ public class Date {
     }
 
     private boolean isValidDay(int day) {
-        return day <= getDaysInMonth(month);
+        return day <= getDaysInMonth(month) && day > 0;
     }
 
     public boolean isValid() {
@@ -109,5 +109,45 @@ public class Date {
     @Override
     public String toString() {
         return month + "/" + day + "/" + year;
+
+    public static void main(String[] args) {
+        String[] validTests = { "02/29/2004", "02/29/2008", "12/31/1998", "04/30/2009", "02/25/2020" };
+        String[] invalidTests = { "02/29/2003", "04/31/2010", "12/20/2021", "01/01/1850", "01/00/2020" };
+        String validTestCase = "test %s :: %s :: returns %s :: status passing%n";
+        String invalidTestCase = "test %s :: %s :: returns %s :: status failing%n";
+        boolean result;
+        boolean expected;
+
+        System.out.printf("%n-----------------------------------%n");
+        System.out.println("It should return true for each date");
+        System.out.println("-----------------------------------");
+        expected = true;
+        for(int i = 0; i < validTests.length; i++) {
+
+            Date test = new Date(validTests[i]);
+            result = test.isValid();
+
+            if(result == expected) {
+                System.out.printf(validTestCase, i+1, validTests[i], result);
+            } else {
+                System.out.printf(invalidTestCase, i+1, validTests[i], result);
+            }
+        }
+
+        System.out.printf("%n------------------------------------%n");
+        System.out.println("It should return false for each date");
+        System.out.println("------------------------------------");
+        expected = false;
+        for(int i = 0; i < invalidTests.length; i++) {
+
+            Date test = new Date(invalidTests[i]);
+            result = test.isValid();
+
+            if(result == expected) {
+                System.out.printf(validTestCase, i+1, invalidTests[i], result);
+            } else {
+                System.out.printf(invalidTestCase, i+1, invalidTests[i], result);
+            }
+        }
     }
 }
