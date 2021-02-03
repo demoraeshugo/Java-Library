@@ -1,5 +1,5 @@
 /***
- * @author Hugo DeMorales
+ * @author Hugo De Moraes
  * @author Jonathan Dong
  */
 
@@ -10,15 +10,16 @@ public class Book {
     private String name;
     private boolean checkedOut;
     private Date datePublished;
+    static int currentSerialNumber = 10001;
+
+    Book(String number) {
+        this.number = number;
+    }
 
     Book(String number, String name, Date datePublished) {
         this.number = number;
         this.name = name;
         this.datePublished = datePublished;
-    }
-
-    Book(String number) {
-        this.number = number;
     }
 
     @Override
@@ -60,18 +61,22 @@ public class Book {
         }
 
         // ex: Book#10007::Design Patterns::5/30/1996::is available.
-        return "Book#" + this.number + "::" + this.name + "::" + datePublished + "::" + isAvailable;
+        return "Book#" + number + "::" + name + "::" + datePublished.toString() + "::" + isAvailable;
+    }
+
+    public static String getCurrentSerialNumber() {
+        return String.valueOf(currentSerialNumber++);
     }
 
     public boolean getCheckedOut() {
         return checkedOut;
     }
 
-    void checkOut() {
+    public void checkOut() {
         this.checkedOut = true;
     }
 
-    void checkIn() {
+    public void checkIn() {
         this.checkedOut = false;
     }
 }

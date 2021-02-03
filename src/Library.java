@@ -1,15 +1,18 @@
+/***
+ * @author Hugo De Moraes
+ * @author Jonathan Dong
+ */
+
 public class Library {
     private Book[] books; // array-based implementation of the bag data structure
     private int numBooks; // the number of books currently in the bag
-    private int currentSerialNumber;
-    private static final int sizeFactor = 4;
+    private final int sizeFactor = 4; // initialize here for use in constructor
 
     // default constructor to create an empty bag
     public Library() {
         books = new Book[sizeFactor];
         numBooks = 0;
-        currentSerialNumber = 10001;
-    } 
+    }
 
     // helper method to find a book in the bag
     private int find(Book book) {
@@ -21,7 +24,7 @@ public class Library {
             }
         }
         return indexOfBook;
-    } 
+    }
 
     // helper method to grow the capacity by 4
     private void grow() {
@@ -37,11 +40,6 @@ public class Library {
         books = newBag;
     }
 
-    // helper method to generate serial numbers
-    public String getNewSerialNumber() {
-        return Integer.toString(currentSerialNumber++);
-    }
-
     // adds a book to the bag
     // grows bag if needed
     public void add(Book book) {
@@ -52,7 +50,6 @@ public class Library {
         books[numBooks] = book;
         numBooks++;
     }
-
 
     // removes a book if it exists
     public boolean remove(Book book) {
@@ -75,6 +72,7 @@ public class Library {
             }
         }
 
+        numBooks--;
         return true;
     }
 
@@ -106,20 +104,21 @@ public class Library {
 
     // print the list of books in the bag
     public void print() {
-        for(int i = 0; i < books.length; i++){
-            System.out.println(books[i].toString());
+        for (Book book : books) {
+            if (book == null) {
+                continue;
+            }
+            System.out.println(book.toString());
         }
     }
 
     // print the list of books by datePublished (ascending)
     public void printByDate() {
-        // Todo
+        print();
     }
 
     // print the list of books by number (ascending)
     public void printByNumber() {
-        // Todo
+        print();
     }
-
-
 }
