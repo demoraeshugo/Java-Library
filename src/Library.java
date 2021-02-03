@@ -14,6 +14,46 @@ public class Library {
         numBooks = 0;
     }
 
+    public void sortByNumber(){
+        int n = numBooks;
+
+        // One by one move boundary of unsorted subarray
+        for (int i = 0; i < n-1; i++)
+        {
+            // Find the minimum element in unsorted array
+            int min_idx = i;
+            for (int j = i+1; j < n; j++)
+                if (books[j].compareByNumber(books[min_idx]) == -1)
+                    min_idx = j;
+
+            // Swap the found minimum element with the first
+            // element
+            Book temp = books[min_idx];
+            books[min_idx] = books[i];
+            books[i] = temp;
+        }
+    }
+
+    public void sortByDate(){
+        int n = numBooks;
+
+        // One by one move boundary of unsorted subarray
+        for (int i = 0; i < n-1; i++)
+        {
+            // Find the minimum element in unsorted array
+            int min_idx = i;
+            for (int j = i+1; j < n; j++)
+                if (books[j].compareByDate(books[min_idx]) == -1)
+                    min_idx = j;
+
+            // Swap the found minimum element with the first
+            // element
+            Book temp = books[min_idx];
+            books[min_idx] = books[i];
+            books[i] = temp;
+        }
+    }
+
     // helper method to find a book in the bag
     private int find(Book book) {
         int indexOfBook = -1;
@@ -24,7 +64,7 @@ public class Library {
             }
         }
         return indexOfBook;
-    }
+    } 
 
     // helper method to grow the capacity by 4
     private void grow() {
@@ -38,6 +78,11 @@ public class Library {
 
         // set new array as the books property
         books = newBag;
+    }
+
+    // helper method to generate serial numbers
+    public String getNewSerialNumber() {
+        return Integer.toString(currentSerialNumber++);
     }
 
     // adds a book to the bag
@@ -114,11 +159,24 @@ public class Library {
 
     // print the list of books by datePublished (ascending)
     public void printByDate() {
-        print();
+        for(int i = 0; i < books.length; i++){
+            if(books[i] != null)
+                System.out.println(books[i].toString());
+        }
     }
 
     // print the list of books by number (ascending)
     public void printByNumber() {
-        print();
+//        sortByNumber(books);
+//        for(int i = 0; i < books.length; i++){
+//            if(books[i] != null)
+//                System.out.println(books[i].toString());
+//        }
+
+        for(int i = 0; i < books.length; i++){
+            if(books[i] != null)
+                System.out.println(books[i].toString());
+        }
+
     }
 }

@@ -80,6 +80,7 @@ public class Date {
             default -> -1;
         };
     }
+    //Am i gonna have to change 30, 29 and 28 to constants too good god
 
     private boolean isValidYear() {
         Date today = new Date();

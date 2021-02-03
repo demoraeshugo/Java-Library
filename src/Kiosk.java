@@ -84,16 +84,19 @@ public class Kiosk {
         }
     }
 
-    private void handlePrintAll() {
+    private void handlePrint() {
         library.print();
     }
 
-    private void handlePrintByDate() {
+    private void handlePrintDate() {
+        library.sortByDate();
         library.printByDate();
     }
 
-    private void handlePrintByNumber() {
+    private void handlePrintNumber() {
+        library.sortByNumber();
         library.printByNumber();
+
     }
 
     // Manual input
