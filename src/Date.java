@@ -51,7 +51,7 @@ public class Date {
         }
     }
 
-    private int getDaysInMonth(int month) {
+    private int getDaysInMonth() {
         // this.month is 1 based 1:12, Calendar class is 0 based 0:11
         int indexOfMonth = month-1;
         int maxMonth = 12;
@@ -76,12 +76,12 @@ public class Date {
                             Calendar.SEPTEMBER,
                             Calendar.NOVEMBER -> 30;
             case
-                    Calendar.FEBRUARY -> getFebruaryDays(year);
+                    Calendar.FEBRUARY -> getFebruaryDays();
             default -> -1;
         };
     }
 
-    private boolean isValidYear(int year) {
+    private boolean isValidYear() {
         Date today = new Date();
         int yearLeftBound = 1900;
         int yearRightBound = today.year;
@@ -91,19 +91,19 @@ public class Date {
                 || (year == yearRightBound && month == today.month && day <= today.day);
     }
 
-    private boolean isValidMonth(int month) {
+    private boolean isValidMonth() {
         int monthLeftBound = 1;
         int monthRightBound = 12;
 
         return month >= monthLeftBound && month <= monthRightBound;
     }
 
-    private boolean isValidDay(int day) {
-        return day <= getDaysInMonth(month) && day > 0;
+    private boolean isValidDay() {
+        return day <= getDaysInMonth() && day > 0;
     }
 
     public boolean isValid() {
-        return isValidYear(year) && isValidMonth(month) && isValidDay(day);
+        return isValidYear() && isValidMonth() && isValidDay();
     }
 
     @Override
