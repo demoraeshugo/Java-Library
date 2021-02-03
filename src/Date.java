@@ -112,21 +112,6 @@ public class Date {
     }
 
     public static void main(String[] args) {
-        /*
-        * leap years
-        * 2004
-        * 2008
-        * 2012
-        * 2016
-        *
-        * valid tests
-        * 02/29/2004
-        * 02/01/2008
-        * 12/31/2010
-        * 05/30/1998
-        *
-        * */
-
         String[] validTests = { "02/29/2004", "02/29/2008", "12/31/1998", "04/30/2009", "02/25/2020" };
         String[] invalidTests = { "02/29/2003", "04/31/2010", "12/20/2021", "01/01/1850", "01/00/2020" };
         String validTestCase = "test %s :: %s :: returns %s :: status passing%n";
