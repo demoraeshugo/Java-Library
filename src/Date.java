@@ -9,9 +9,9 @@ public class Date {
     private final int year;
     private final int month;
     private final int day;
-    private static final int Quadrennial = 4;
-    private static final int Centennial = 100;
-    private static final int Quatercentennial = 400;
+    private final int Quadrennial = 4;
+    private final int Centennial = 100;
+    private final int Quatercentennial = 400;
 
     // taking mm/dd/yyyy and create a Date object
     public Date(String date) {
@@ -31,15 +31,15 @@ public class Date {
         day = Integer.parseInt(tokens[2]);
     }
 
-    private int getYear() {
+    public int getYear() {
         return year;
     }
 
-    private int getMonth() {
+    public int getMonth() {
         return month;
     }
 
-    private int getDay() {
+    public int getDay() {
         return day;
     }
 

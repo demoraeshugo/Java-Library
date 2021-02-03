@@ -80,11 +80,6 @@ public class Library {
         books = newBag;
     }
 
-    // helper method to generate serial numbers
-    public String getNewSerialNumber() {
-        return Integer.toString(currentSerialNumber++);
-    }
-
     // adds a book to the bag
     // grows bag if needed
     public void add(Book book) {
@@ -147,6 +142,10 @@ public class Library {
 
     }
 
+    public boolean isEmpty() {
+        return numBooks == 0;
+    }
+
     // print the list of books in the bag
     public void print() {
         for (Book book : books) {
@@ -157,26 +156,37 @@ public class Library {
         }
     }
 
+    public void printDefault() {
+        if(isEmpty()) {
+            System.out.println(IoFields.invalidPrintLog);
+        } else {
+            System.out.println(IoFields.printLog);
+            print();
+            System.out.println(IoFields.printEndLog);
+        }
+    }
+
     // print the list of books by datePublished (ascending)
     public void printByDate() {
-        for(int i = 0; i < books.length; i++){
-            if(books[i] != null)
-                System.out.println(books[i].toString());
+        if(isEmpty()) {
+            System.out.println(IoFields.invalidPrintLog);
+        } else {
+            sortByDate();
+            System.out.println(IoFields.printByDateLog);
+            print();
+            System.out.println(IoFields.printEndLog);
         }
     }
 
     // print the list of books by number (ascending)
     public void printByNumber() {
-//        sortByNumber(books);
-//        for(int i = 0; i < books.length; i++){
-//            if(books[i] != null)
-//                System.out.println(books[i].toString());
-//        }
-
-        for(int i = 0; i < books.length; i++){
-            if(books[i] != null)
-                System.out.println(books[i].toString());
+        if(isEmpty()) {
+            System.out.println(IoFields.invalidPrintLog);
+        } else {
+            sortByNumber();
+            System.out.println(IoFields.printByNumberLog);
+            print();
+            System.out.println(IoFields.printEndLog);
         }
-
     }
 }

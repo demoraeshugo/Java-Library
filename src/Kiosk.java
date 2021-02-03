@@ -30,11 +30,11 @@ public class Kiosk {
             case Commands.remove -> handleRemove();
             case Commands.checkOut -> handleCheckOut();
             case Commands.checkIn -> handleReturn();
-            case Commands.printAll -> handlePrintAll();
-            case Commands.printByDate -> handlePrintByDate();
-            case Commands.printByNumber -> handlePrintByNumber();
+            case Commands.printAll -> handlePrint();
+            case Commands.printByDate -> handlePrintDate();
+            case Commands.printByNumber -> handlePrintNumber();
             case Commands.runTest -> runTest();
-            default -> System.out.println(IoFields.invalidCommand);
+            default -> System.out.println(IoFields.invalidCommandLog);
         }
     }
 
@@ -43,8 +43,7 @@ public class Kiosk {
         Date publishDate = new Date(tokens[2]);
 
         if(publishDate.isValid()) {
-            String serialNumber = Book.getCurrentSerialNumber();
-            library.add(new Book( serialNumber, title, publishDate ));
+            library.add(new Book(title, publishDate ));
             System.out.printf(IoFields.validDateLog, title);
         } else {
             System.out.println(IoFields.invalidDateLog);
@@ -85,18 +84,15 @@ public class Kiosk {
     }
 
     private void handlePrint() {
-        library.print();
+        library.printDefault();
     }
 
     private void handlePrintDate() {
-        library.sortByDate();
         library.printByDate();
     }
 
     private void handlePrintNumber() {
-        library.sortByNumber();
         library.printByNumber();
-
     }
 
     // Manual input

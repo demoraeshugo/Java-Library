@@ -3,16 +3,15 @@
  * @author Jonathan Dong
  */
 
-//import java.util.Objects;
-
 public class Book {
     private final String number; // a 5-digit serial number unique to the book
     private String name;
     private boolean checkedOut;
     private Date datePublished;
+    static int currentSerialNumber = 10001;
 
-    Book(String number, String name, Date datePublished) {
-        this.number = number;
+    Book( String name, Date datePublished) {
+        this.number = getCurrentSerialNumber();
         this.name = name;
         this.datePublished = datePublished;
     }
@@ -28,7 +27,6 @@ public class Book {
     public Date getDatePublished(){
         return this.datePublished;
     }
-
 
     public int compareByNumber(Book b) {
         if(Integer.parseInt(this.getBookNumber()) > Integer.parseInt(b.getBookNumber())){
@@ -79,16 +77,6 @@ public class Book {
 
     @Override
     public boolean equals(Object obj) {
-//        if(this == obj) {
-//            return true;
-//        }
-//
-//        if(obj == null || getClass() != obj.getClass()) {
-//            return false;
-//        }
-//
-//        Book targetBook = (Book) obj;
-//        return Objects.equals(number, targetBook.number);
         if(this == obj) {
             return true;
         }
@@ -98,12 +86,8 @@ public class Book {
         }
 
         Book targetBook = (Book) obj;
-        return ( targetBook.number.equals(((Book) obj).number));
-
-
+        return ( targetBook.number.equals(this.number));
     }
-
-
 
     @Override
     public String toString() {

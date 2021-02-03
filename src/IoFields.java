@@ -14,5 +14,10 @@ public final class IoFields {
     public static final String invalidCheckOutLog = "Book#%s is not available.%n";
     public static final String validReturnLog = "Book#%s return has completed. Thanks%n";
     public static final String invalidReturnLog = "Unable to return Book#%s%n";
-    public static final String invalidCommand = "Invalid Command";
+    public static final String invalidCommandLog = "Invalid Command";
+    public static final String invalidPrintLog = "Library catalog is empty!";
+    public static final String printByDateLog = "**List of books by the dates published.";
+    public static final String printByNumberLog = "**List of books by the book numbers.";
+    public static final String printLog = "**List of books in the library.";
+    public static final String printEndLog = "**End of list";
 }
