@@ -7,6 +7,9 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
+/*
+Note that before we hand it in we gotta get rid of everything except Scanner
+ */
 
 public class Kiosk {
     private final Library library;
@@ -81,16 +84,19 @@ public class Kiosk {
         }
     }
 
-    private void handlePrintAll() {
+    private void handlePrint() {
         library.print();
     }
 
-    private void handlePrintByDate() {
+    private void handlePrintDate() {
+        library.sortByDate();
         library.printByDate();
     }
 
-    private void handlePrintByNumber() {
+    private void handlePrintNumber() {
+        library.sortByNumber();
         library.printByNumber();
+
     }
 
     // Manual input
