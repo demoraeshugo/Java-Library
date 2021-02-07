@@ -112,21 +112,40 @@ public class Kiosk {
      * helper method that prints contents of Library
      */
     private void handlePrint() {
-        library.printDefault();
+        if(library.isEmpty()) {
+            System.out.println(IoFields.invalidPrintLog);
+        } else {
+            System.out.println(IoFields.printLog);
+            library.printDefault();
+            System.out.println(IoFields.printEndLog);
+        }
     }
 
     /**
      * helper method that prints contents of Library by Date
      */
     private void handlePrintDate() {
-        library.printByDate();
+
+        if(library.isEmpty()) {
+            System.out.println(IoFields.invalidPrintLog);
+        } else {
+            System.out.println(IoFields.printByDateLog);
+            library.printByDate();
+            System.out.println(IoFields.printEndLog);
+        }
     }
 
     /**
      * helper method that prints contents of Library by book number
      */
     private void handlePrintNumber() {
-        library.printByNumber();
+        if(library.isEmpty()) {
+            System.out.println(IoFields.invalidPrintLog);
+        } else {
+            System.out.println(IoFields.printByNumberLog);
+            library.printByNumber();
+            System.out.println(IoFields.printEndLog);
+        }
     }
 
     /**

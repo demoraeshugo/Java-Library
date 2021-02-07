@@ -1,28 +1,17 @@
+/*
+  Date class provides the structure for the Date object, which contains a year, month and day.
+  It also contains informative methods to determine how many days are in each month, and whether
+  a certain Date object is valid. The Book class has a attribute datePublished which is of type Date.
 
-/**
- * Date class provides the structure for the Date object, which contains a year, month and day.
- * It also contains informative methods to determine how many days are in each month, and whether
- * a certain Date object is valid. The Book class has a attribute datePublished which is of type Date.
- *
- * @author Hugo De Moraes, Jonathan Dong
- *
+  @author Hugo De Moraes, Jonathan Dong
+
  */
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 public class Date {
     private final int year;
     private final int month;
     private final int day;
-    private final int QUADRENNIAL = 4;
-    private final int CENTENNIAL = 100;
-    private final int QUATERCENTENNIAL = 400;
-    private final int FEB_DAYS_LEAPYEAR = 29;
-    private final int FEB_DAYS_NONLEAPYEAR = 28;
-    private final int MAX_MONTH_NUM = 12;
-    private final int MIN_MONTH_NUM = 1;
-    private final int DAYS_IN_30DAY_MONTH = 30;
-    private final int DAYS_IN_31DAY_MONTH = 31;
 
 
     /**
@@ -41,11 +30,11 @@ public class Date {
      * default Constructor for Date Object based on today's date
      */
     public Date() {
-        String[] tokens = java.time.LocalDate.now().toString().split("-"); // splits todays date into tokens
+        Calendar calendar = Calendar.getInstance();
 
-        year = Integer.parseInt(tokens[0]);
-        month = Integer.parseInt(tokens[1]);
-        day = Integer.parseInt(tokens[2]);
+        year = calendar.get(Calendar.YEAR);
+        month = calendar.get(Calendar.MONTH) + 1;
+        day = calendar.get(Calendar.DAY_OF_MONTH);
     }
 
     /**
@@ -77,10 +66,16 @@ public class Date {
      * @return 29 if year is leap year, 28 if year is not
      */
     private int getFebruaryDays() {
-        if (((year % QUADRENNIAL == 0) & !(year % CENTENNIAL == 0)) || (year % QUATERCENTENNIAL == 0)) {
-            return FEB_DAYS_LEAPYEAR;
+        int QUADRENNIAL = 4;
+        int CENTENNIAL = 100;
+        int QUADRICENTENNIAL = 400;
+        int FEB_DAYS_LEAP_YEAR = 29;
+        int FEB_DAYS_NON_LEAP_YEAR = 28;
+
+        if (((year % QUADRENNIAL == 0) & !(year % CENTENNIAL == 0)) || (year % QUADRICENTENNIAL == 0)) {
+            return FEB_DAYS_LEAP_YEAR;
         } else {
-            return FEB_DAYS_NONLEAPYEAR;
+            return FEB_DAYS_NON_LEAP_YEAR;
         }
     }
 
@@ -89,29 +84,26 @@ public class Date {
      * @return number of days in month
      */
     private int getDaysInMonth() {
+        int DAYS_IN_30DAY_MONTH = 30;
+        int DAYS_IN_31DAY_MONTH = 31;
+        int INDEX_OF_MONTH = month-1; // this.month is 1 based 1:12, Calendar class is 0 based 0:11
 
-        int indexOfMonth = month-1; // this.month is 1 based 1:12, Calendar class is 0 based 0:11
-
-        if(month > MAX_MONTH_NUM || month < MIN_MONTH_NUM) { //checks if month is between 1 and 12
-            return 0;
-        }
-
-        return switch(indexOfMonth){
+        return switch(INDEX_OF_MONTH){
             case
-                            Calendar.JANUARY,
-                            Calendar.MARCH,
-                            Calendar.MAY,
-                            Calendar.JULY,
-                            Calendar.AUGUST,
-                            Calendar.OCTOBER,
-                            Calendar.DECEMBER -> DAYS_IN_31DAY_MONTH;
+                    Calendar.JANUARY,
+                    Calendar.MARCH,
+                    Calendar.MAY,
+                    Calendar.JULY,
+                    Calendar.AUGUST,
+                    Calendar.OCTOBER,
+                    Calendar.DECEMBER -> DAYS_IN_31DAY_MONTH;
             case
-                            Calendar.APRIL,
-                            Calendar.JUNE,
-                            Calendar.SEPTEMBER,
-                            Calendar.NOVEMBER -> DAYS_IN_30DAY_MONTH;
+                    Calendar.APRIL,
+                    Calendar.JUNE,
+                    Calendar.SEPTEMBER,
+                    Calendar.NOVEMBER -> DAYS_IN_30DAY_MONTH;
             case
-                            Calendar.FEBRUARY -> getFebruaryDays();
+                    Calendar.FEBRUARY -> getFebruaryDays();
             default -> -1;
         };
     }
@@ -134,7 +126,8 @@ public class Date {
      * @return true if month is between 1 and 12
      */
     private boolean isValidMonth() {
-
+        int MAX_MONTH_NUM = 12;
+        int MIN_MONTH_NUM = 1;
         return month >= MIN_MONTH_NUM && month <=MAX_MONTH_NUM;
     }
 
@@ -155,7 +148,7 @@ public class Date {
     }
 
     /**
-     * overrided toString method gives string representation of Date Object
+     * overridden toString method gives string representation of Date Object
      * @return String containing month, day and year of Date
      */
     @Override

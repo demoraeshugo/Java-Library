@@ -187,7 +187,7 @@ public class Library {
      * @return true if numBooks = 0
      */
     public boolean isEmpty() {
-        return (numBooks == 0);
+        return numBooks == 0;
     }
 
 
