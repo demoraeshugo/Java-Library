@@ -1,6 +1,10 @@
-/***
- * @author Hugo De Moraes
- * @author Jonathan Dong
+
+/**
+ * IoFields class contains String messages that are used to display info about user commands
+ * that are handled by the Kiosk class
+ *
+ * @author Hugo De Moraes, Jonathan Dong
+ *
  */
 
 public final class IoFields {

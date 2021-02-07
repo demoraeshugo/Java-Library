@@ -1,6 +1,10 @@
-/***
- * @author Hugo De Moraes
- * @author Jonathan Dong
+
+/**
+ * Commands class contains info on what each console command means.
+ * For example, an "A" signifies that the user is attempting to add a Book
+ *
+ * @author Hugo De Moraes, Jonathan Dong
+ *
  */
 
 public final class Commands {
@@ -13,3 +17,4 @@ public final class Commands {
     public final static String printByNumber = "PN";
     public final static String runTest = "RT";
 }
+//probably should delete RT before we hand in final

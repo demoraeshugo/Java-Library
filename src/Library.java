@@ -1,6 +1,12 @@
-/***
- * @author Hugo De Moraes
- * @author Jonathan Dong
+
+/**
+ * Library class is a container class that is designed to hold Book objects. Library also provides
+ * a variety of methods to make changes to its bag of Books such as adding, removing and checking out
+ * Books, as well as different ways of sorting Books. Library also controls the printing of Books by either number
+ * or by datePublished
+ *
+ * @author Hugo De Moraes, Jonathan Dong
+ *
  */
 
 public class Library {
@@ -8,12 +14,18 @@ public class Library {
     private int numBooks; // the number of books currently in the bag
     private final int sizeFactor = 4; // initialize here for use in constructor
 
-    // default constructor to create an empty bag
+
+    /**
+     * default constructor to create an empty bag with numBooks = 0
+     */
     public Library() {
         books = new Book[sizeFactor];
         numBooks = 0;
     }
 
+    /**
+     * sorts Library by book number
+     */
     public void sortByNumber(){
         int n = numBooks;
 
@@ -34,6 +46,9 @@ public class Library {
         }
     }
 
+    /**
+     * sorts Library by datePublished
+     */
     public void sortByDate(){
         int n = numBooks;
 
@@ -54,7 +69,11 @@ public class Library {
         }
     }
 
-    // helper method to find a book in the bag
+    /**
+     * helper method to find a book in the bag
+     * @return index of book in books array
+     *         -1 if book is not in books array
+     */
     private int find(Book book) {
         int indexOfBook = -1;
         for (int i = 0; i < books.length; i++) {
@@ -66,7 +85,9 @@ public class Library {
         return indexOfBook;
     } 
 
-    // helper method to grow the capacity by 4
+    /**
+     * helper method to grow the capacity by 4
+     */
     private void grow() {
         // create new array of length current + 4
         Book[] newBag = new Book[books.length + sizeFactor];
@@ -80,8 +101,11 @@ public class Library {
         books = newBag;
     }
 
-    // adds a book to the bag
-    // grows bag if needed
+
+    /**
+     * adds a book to the bag, grows bag if needed
+     * @param book Book object to be added
+     */
     public void add(Book book) {
         if (numBooks == books.length - 1) {
             grow();
@@ -91,7 +115,12 @@ public class Library {
         numBooks++;
     }
 
-    // removes a book if it exists
+    /**
+     * removes a book if it exists
+     * @param book Book object to be removed
+     * @return true if book is removed successfully
+     *         false if book is not found
+     */
     public boolean remove(Book book) {
         int indexOfBook = find(book);
 
@@ -116,7 +145,12 @@ public class Library {
         return true;
     }
 
-    // checks out a book if available
+    /**
+     *sets checkedOut attribute of Book to be true if possible
+     * @param book Book object to be checked out
+     * @return true if book is successfully checked out
+     *         false if book is not found or is already checked out
+     */
     public boolean checkOut(Book book) {
         int indexOfBook = find(book);
 
@@ -129,7 +163,13 @@ public class Library {
         return true;
     }
 
-    // returns a book if possible
+
+    /**
+     * returns a book if possible
+     * @param book Book object to be returned
+     * @return true if book is successfully returned
+     *         false if book is not found
+     */
     public boolean returns(Book book) {
         int indexOfBook = find(book);
 
@@ -142,11 +182,18 @@ public class Library {
 
     }
 
+    /**
+     * checks if number of Books in Library is 0
+     * @return true if numBooks = 0
+     */
     public boolean isEmpty() {
-        return numBooks == 0;
+        return (numBooks == 0);
     }
 
-    // print the list of books in the bag
+
+    /**
+     * helper method to print the list of books in the bag
+     */
     public void print() {
         for (Book book : books) {
             if (book == null) {
@@ -156,8 +203,11 @@ public class Library {
         }
     }
 
+    /**
+     * deals with the PA command to print the list of books in the bag in current sequence
+     */
     public void printDefault() {
-        if(isEmpty()) {
+        if(isEmpty()) {                                     //first checks if books array is empty
             System.out.println(IoFields.invalidPrintLog);
         } else {
             System.out.println(IoFields.printLog);
@@ -166,7 +216,9 @@ public class Library {
         }
     }
 
-    // print the list of books by datePublished (ascending)
+    /**
+     *    print the list of books by datePublished (ascending)
+     */
     public void printByDate() {
         if(isEmpty()) {
             System.out.println(IoFields.invalidPrintLog);
@@ -178,7 +230,9 @@ public class Library {
         }
     }
 
-    // print the list of books by number (ascending)
+    /**
+     * print the list of books by number (ascending)
+     */
     public void printByNumber() {
         if(isEmpty()) {
             System.out.println(IoFields.invalidPrintLog);
