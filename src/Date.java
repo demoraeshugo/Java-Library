@@ -1,13 +1,15 @@
-/**
-  Date class provides the structure for the Date object, which contains a year, month and day.
-  It also contains informative methods to determine how many days are in each month, and whether
-  a certain Date object is valid. The Book class has a attribute datePublished which is of type Date.
 
-  @author Hugo De Moraes, Jonathan Dong
-
- */
 import java.util.Calendar;
 
+
+
+/**
+ * Date class provides the structure for the Date object, which contains a year, month and day.
+ *     *   It also contains informative methods to determine how many days are in each month, and whether
+ *     *   a certain Date object is valid. The Book class has a attribute datePublished which is of type Date.
+ *     *
+ *     *   @author Hugo De Moraes, Jonathan Dong
+ */
 public class Date {
     private final int year;
     private final int month;

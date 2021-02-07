@@ -1,11 +1,3 @@
-/**
- * Kiosk class provides the interface for communicating with a Library object and handles input and output
- * by processing commands from the console.This includes dealing with additions/removal to a Library, printing a Library,
- * Checking out and returning books, etc.
- *
- * @author Hugo De Moraes, Jonathan Dong
- *
- */
 
 import java.io.File;
 import java.io.IOException;
@@ -15,6 +7,13 @@ import java.util.Scanner;
 Note that before we hand it in we gotta get rid of everything except Scanner
  */
 
+/**
+ * Kiosk class provides the interface for communicating with a Library object and handles input and output
+ *  * by processing commands from the console.This includes dealing with additions/removal to a Library, printing a Library,
+ *  * Checking out and returning books, etc.
+ *  *
+ *  * @author Hugo De Moraes, Jonathan Dong
+ */
 public class Kiosk {
     private final Library library;
     private String userInput;
@@ -81,6 +80,7 @@ public class Kiosk {
             System.out.println(IoFields.invalidRemoveLog);
         }
     }
+
     /**
      * processes user input from command line when user wants to checkout Book from Library
      */
@@ -94,6 +94,7 @@ public class Kiosk {
             System.out.printf(IoFields.invalidCheckOutLog, serialNumber);
         }
     }
+
     /**
      * processes user input from command line when user wants to return Book to Library
      */
