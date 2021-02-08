@@ -158,9 +158,13 @@ public class Date {
         return month + "/" + day + "/" + year;
     }
 
+    /**
+     *
+     * Displays test cases for the isValid method and respective results
+     */
     public static void main(String[] args) {
         String[] validTests = { "02/29/2004", "02/29/2008", "12/31/1998", "04/30/2009", "02/25/2020" };
-        String[] invalidTests = { "02/29/2003", "04/31/2010", "12/20/2021", "01/01/1850", "01/00/2020" };
+        String[] invalidTests = { "02/29/2003","02/29/1900", "04/31/2010", "12/20/2021", "15/11/2005","01/01/1850", "01/00/2020" ,"05/36/2009"};
         String validTestCase = "test %s :: %s :: returns %s :: status passing%n";
         String invalidTestCase = "test %s :: %s :: returns %s :: status failing%n";
         boolean result;
