@@ -1,8 +1,6 @@
 
 import java.util.Calendar;
 
-
-
 /**
  * Date class provides the structure for the Date object, which contains a year, month and day.
  *     *   It also contains informative methods to determine how many days are in each month, and whether
@@ -14,7 +12,6 @@ public class Date {
     private final int year;
     private final int month;
     private final int day;
-
 
     /**
      * Constructor for Date Object based on given string in the format of mm/dd/yyyy

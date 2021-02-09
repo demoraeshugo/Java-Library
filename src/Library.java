@@ -8,12 +8,10 @@
  * @author Hugo De Moraes, Jonathan Dong
  *
  */
-
 public class Library {
     private Book[] books; // array-based implementation of the bag data structure
     private int numBooks; // the number of books currently in the bag
     private final int sizeFactor = 4; // initialize here for use in constructor
-
 
     /**
      * default constructor to create an empty bag with numBooks = 0
@@ -100,7 +98,6 @@ public class Library {
         // set new array as the books property
         books = newBag;
     }
-
 
     /**
      * adds a book to the bag, grows bag if needed

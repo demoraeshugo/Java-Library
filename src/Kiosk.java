@@ -1,11 +1,5 @@
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
-/*
-Note that before we hand it in we gotta get rid of everything except Scanner
- */
 
 /**
  * Kiosk class provides the interface for communicating with a Library object and handles input and output
@@ -47,7 +41,6 @@ public class Kiosk {
             case Commands.printAll -> handlePrint();
             case Commands.printByDate -> handlePrintDate();
             case Commands.printByNumber -> handlePrintNumber();
-            case Commands.runTest -> runTest();
             default -> System.out.println(IoFields.invalidCommandLog);
         }
     }
@@ -113,40 +106,21 @@ public class Kiosk {
      * helper method that prints contents of Library
      */
     private void handlePrint() {
-        if(library.isEmpty()) {
-            System.out.println(IoFields.invalidPrintLog);
-        } else {
-            System.out.println(IoFields.printLog);
-            library.printDefault();
-            System.out.println(IoFields.printEndLog);
-        }
+        library.printDefault();
     }
 
     /**
      * helper method that prints contents of Library by Date
      */
     private void handlePrintDate() {
-
-        if(library.isEmpty()) {
-            System.out.println(IoFields.invalidPrintLog);
-        } else {
-            System.out.println(IoFields.printByDateLog);
-            library.printByDate();
-            System.out.println(IoFields.printEndLog);
-        }
+        library.printByDate();
     }
 
     /**
      * helper method that prints contents of Library by book number
      */
     private void handlePrintNumber() {
-        if(library.isEmpty()) {
-            System.out.println(IoFields.invalidPrintLog);
-        } else {
-            System.out.println(IoFields.printByNumberLog);
-            library.printByNumber();
-            System.out.println(IoFields.printEndLog);
-        }
+        library.printByNumber();
     }
 
     /**
@@ -166,26 +140,5 @@ public class Kiosk {
         } while(!userInput.equals(quitCommand) );
 
         System.out.println(IoFields.endPrompt);         //when finished with kiosk, end prompt is printed
-    }
-
-    // Auto input from file
-    public void runTest() {
-        File file = new File("src/testCases.txt");
-        String quitCommand = "Q";
-
-        try (Scanner sc = new Scanner(file, StandardCharsets.UTF_8.name())) {
-            do {
-                tokens = tokenize(sc.nextLine());
-                userInput = tokens[0];
-                if(!userInput.equals(quitCommand)){
-                    handleUserInput();
-                }
-            } while(!userInput.equals(quitCommand) && sc.hasNextLine());
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        System.out.println(IoFields.endPrompt);
     }
 }

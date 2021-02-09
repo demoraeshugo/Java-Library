@@ -6,7 +6,6 @@
  * @author Hugo De Moraes, Jonathan Dong
  *
  */
-
 public final class IoFields {
     public static final String startPrompt = "Library Kiosk running.";
     public static final String endPrompt = "Kiosk session ended";
