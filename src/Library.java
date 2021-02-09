@@ -146,7 +146,7 @@ public class Library {
     }
 
     /**
-     *sets checkedOut attribute of Book to be true if possible
+     * sets checkedOut attribute of Book to be true if possible
      * @param book Book object to be checked out
      * @return true if book is successfully checked out
      *         false if book is not found or is already checked out
