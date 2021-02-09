@@ -7,7 +7,12 @@
  */
 
 public class RunProject1 {
+    /**
+     * Runs Project 1
+     * @param args command line arguments passed in by user
+     */
     public static void main(String[] args) {
+
         new Kiosk().run();
     }
 }
