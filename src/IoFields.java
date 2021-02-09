@@ -4,7 +4,6 @@
  * that are handled by the Kiosk class
  *
  * @author Hugo De Moraes, Jonathan Dong
- *
  */
 public final class IoFields {
     public static final String startPrompt = "Library Kiosk running.";

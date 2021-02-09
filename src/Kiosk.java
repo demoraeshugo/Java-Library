@@ -3,10 +3,10 @@ import java.util.Scanner;
 
 /**
  * Kiosk class provides the interface for communicating with a Library object and handles input and output
- *  * by processing commands from the console.This includes dealing with additions/removal to a Library, printing a Library,
- *  * Checking out and returning books, etc.
- *  *
- *  * @author Hugo De Moraes, Jonathan Dong
+ * * by processing commands from the console.This includes dealing with additions/removal to a Library, printing a Library,
+ * * Checking out and returning books, etc.
+ * *
+ * * @author Hugo De Moraes, Jonathan Dong
  */
 public class Kiosk {
     private final Library library;
@@ -22,6 +22,7 @@ public class Kiosk {
 
     /**
      * tokenizes a given input String
+     *
      * @param input string to be tokenized
      * @return String array of tokens (Strings split with ,)
      */
@@ -52,8 +53,8 @@ public class Kiosk {
         String title = tokens[1];                   //Book title given as 2nd element of tokenized array
         Date publishDate = new Date(tokens[2]);     //Book date given as 3rd element of tokenized array
 
-        if(publishDate.isValid()) {
-            library.add(new Book(title, publishDate ));
+        if (publishDate.isValid()) {
+            library.add(new Book(title, publishDate));
             System.out.printf(IoFields.validDateLog, title);
         } else {
             System.out.println(IoFields.invalidDateLog);
@@ -67,7 +68,7 @@ public class Kiosk {
         String serialNumber = tokens[1];
         Book targetBook = new Book(serialNumber);
 
-        if(library.remove(targetBook)) {
+        if (library.remove(targetBook)) {
             System.out.printf(IoFields.validRemoveLog, serialNumber);
         } else {
             System.out.println(IoFields.invalidRemoveLog);
@@ -81,7 +82,7 @@ public class Kiosk {
         String serialNumber = tokens[1];
         Book targetBook = new Book(serialNumber);
 
-        if(library.checkOut(targetBook)) {
+        if (library.checkOut(targetBook)) {
             System.out.printf(IoFields.validCheckOutLog, serialNumber);
         } else {
             System.out.printf(IoFields.invalidCheckOutLog, serialNumber);
@@ -95,7 +96,7 @@ public class Kiosk {
         String serialNumber = tokens[1];
         Book targetBook = new Book(serialNumber);
 
-        if(library.returns(targetBook)) {
+        if (library.returns(targetBook)) {
             System.out.printf(IoFields.validReturnLog, serialNumber);
         } else {
             System.out.printf(IoFields.invalidReturnLog, serialNumber);
@@ -134,10 +135,10 @@ public class Kiosk {
         do {
             tokens = tokenize(scan.nextLine());         //tokenize each line of user input
             userInput = tokens[0];                      //sets userInput to command (A, I, O, R , etc)
-            if(!userInput.equals(quitCommand)){
+            if (!userInput.equals(quitCommand)) {
                 handleUserInput();
             }
-        } while(!userInput.equals(quitCommand) );
+        } while (!userInput.equals(quitCommand));
 
         System.out.println(IoFields.endPrompt);         //when finished with kiosk, end prompt is printed
     }

@@ -6,7 +6,6 @@
  * be held by the Library class.
  *
  * @author Hugo De Moraes, Jonathan Dong
- *
  */
 public class Book {
     private final String number; // a 5-digit serial number unique to the book
@@ -17,10 +16,11 @@ public class Book {
 
     /**
      * Constructor for Book Object, creates book with a given name and datePublished
-     * @param name name of the Book
+     *
+     * @param name          name of the Book
      * @param datePublished publish date of Book given as Date object
      */
-    Book( String name, Date datePublished) {
+    Book(String name, Date datePublished) {
         this.number = getCurrentSerialNumber();
         this.name = name;
         this.datePublished = datePublished;
@@ -28,6 +28,7 @@ public class Book {
 
     /**
      * Constructor for Book Object, creates book with a given bookNumber
+     *
      * @param number bookNumber of Book to be created
      */
     Book(String number) {
@@ -36,34 +37,36 @@ public class Book {
 
     /**
      * getter method for number attribute of Book
+     *
      * @return String number of Book
      */
-    public String getBookNumber(){
+    public String getBookNumber() {
         return this.number;
     }
+
     /**
      * getter method for date attribute of Book
+     *
      * @return Date object of Book
      */
-    public Date getDatePublished(){
+    public Date getDatePublished() {
         return this.datePublished;
     }
 
     /**
      * Compares two Books based on their number attribute
+     *
      * @param book Book to compare
      * @return 1 if number of current Book > number of Book to compare
-     *         0 if number of current Book = number of Book to compare
-     *        -1 if number of current Book < number of Book to compare
+     * 0 if number of current Book = number of Book to compare
+     * -1 if number of current Book < number of Book to compare
      */
     public int compareByNumber(Book book) {
-        if(Integer.parseInt(this.getBookNumber()) > Integer.parseInt(book.getBookNumber())){
+        if (Integer.parseInt(this.getBookNumber()) > Integer.parseInt(book.getBookNumber())) {
             return 1;
-        }
-        else if (Integer.parseInt(this.getBookNumber()) == Integer.parseInt(book.getBookNumber())){
+        } else if (Integer.parseInt(this.getBookNumber()) == Integer.parseInt(book.getBookNumber())) {
             return 0;
-        }
-        else {
+        } else {
             return -1;
         }
 
@@ -72,34 +75,29 @@ public class Book {
 
     /**
      * Compares two Books based on their datePublished attribute
+     *
      * @param book Book to compare
      * @return 1 if number of current Book > number of Book to compare
-     *         0 if number of current Book = number of Book to compare
-     *        -1 if number of current Book < number of Book to compare
+     * 0 if number of current Book = number of Book to compare
+     * -1 if number of current Book < number of Book to compare
      */
     public int compareByDate(Book book) {
-        if(this.getDatePublished().getYear() < book.getDatePublished().getYear()){              //first compare years
+        if (this.getDatePublished().getYear() < book.getDatePublished().getYear()) {              //first compare years
             return -1;
-        }
-        else if (this.getDatePublished().getYear() > book.getDatePublished().getYear()){
+        } else if (this.getDatePublished().getYear() > book.getDatePublished().getYear()) {
             return 1;
 
-        }
-        else {
-            if (this.getDatePublished().getMonth() < book.getDatePublished().getMonth()){       //second compare months
+        } else {
+            if (this.getDatePublished().getMonth() < book.getDatePublished().getMonth()) {       //second compare months
                 return -1;
-            }
-            else if ( this.getDatePublished().getMonth() > book.getDatePublished().getMonth()){
+            } else if (this.getDatePublished().getMonth() > book.getDatePublished().getMonth()) {
                 return 1;
-            }
-            else{
-                if ( this.getDatePublished().getDay() < book.getDatePublished().getDay()){      //lastly compare days
+            } else {
+                if (this.getDatePublished().getDay() < book.getDatePublished().getDay()) {      //lastly compare days
                     return -1;
-                }
-                else if(this.getDatePublished().getDay() > book.getDatePublished().getDay()){
+                } else if (this.getDatePublished().getDay() > book.getDatePublished().getDay()) {
                     return 1;
-                }
-                else {
+                } else {
                     return 0;
                 }
             }
@@ -109,25 +107,27 @@ public class Book {
 
     /**
      * Overriden equals method to determine if two Books are equal
+     *
      * @param obj Book Object to be evaluated for equality
      * @return true if number of each Book is the same
      */
     @Override
     public boolean equals(Object obj) {
-        if(this == obj) {
+        if (this == obj) {
             return true;
         }
 
-        if(obj == null || getClass() != obj.getClass()) {
+        if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
 
         Book targetBook = (Book) obj;
-        return ( targetBook.number.equals(this.number));
+        return (targetBook.number.equals(this.number));
     }
 
     /**
      * Overriden toString method converts a Book to its String representation
+     *
      * @return a String containing the book number, book name, and datePublished
      */
     @Override
@@ -145,7 +145,8 @@ public class Book {
     }
 
     /**
-     *getter method for incremented currentSerialNumber returned as an String
+     * getter method for incremented currentSerialNumber returned as an String
+     *
      * @return String value of currentSerialNumber+1
      */
     public static String getCurrentSerialNumber() {
@@ -153,7 +154,8 @@ public class Book {
     }
 
     /**
-     *getter method for checkedOut boolean
+     * getter method for checkedOut boolean
+     *
      * @return value of boolean variable checkedOut
      */
     public boolean getCheckedOut() {
@@ -161,7 +163,7 @@ public class Book {
     }
 
     /**
-     *setter method for checkedOut boolean, sets checkedOut as true
+     * setter method for checkedOut boolean, sets checkedOut as true
      */
     public void checkOut() {
         this.checkedOut = true;

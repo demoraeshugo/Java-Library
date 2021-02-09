@@ -6,7 +6,6 @@
  * or by datePublished
  *
  * @author Hugo De Moraes, Jonathan Dong
- *
  */
 public class Library {
     private Book[] books; // array-based implementation of the bag data structure
@@ -24,15 +23,14 @@ public class Library {
     /**
      * sorts Library by book number
      */
-    public void sortByNumber(){
+    public void sortByNumber() {
         int n = numBooks;
 
         // One by one move boundary of unsorted subarray
-        for (int i = 0; i < n-1; i++)
-        {
+        for (int i = 0; i < n - 1; i++) {
             // Find the minimum element in unsorted array
             int min_idx = i;
-            for (int j = i+1; j < n; j++)
+            for (int j = i + 1; j < n; j++)
                 if (books[j].compareByNumber(books[min_idx]) == -1)
                     min_idx = j;
 
@@ -47,15 +45,14 @@ public class Library {
     /**
      * sorts Library by datePublished
      */
-    public void sortByDate(){
+    public void sortByDate() {
         int n = numBooks;
 
         // One by one move boundary of unsorted subarray
-        for (int i = 0; i < n-1; i++)
-        {
+        for (int i = 0; i < n - 1; i++) {
             // Find the minimum element in unsorted array
             int min_idx = i;
-            for (int j = i+1; j < n; j++)
+            for (int j = i + 1; j < n; j++)
                 if (books[j].compareByDate(books[min_idx]) == -1)
                     min_idx = j;
 
@@ -69,8 +66,9 @@ public class Library {
 
     /**
      * helper method to find a book in the bag
+     *
      * @return index of book in books array
-     *         -1 if book is not in books array
+     * -1 if book is not in books array
      */
     private int find(Book book) {
         int indexOfBook = -1;
@@ -81,7 +79,7 @@ public class Library {
             }
         }
         return indexOfBook;
-    } 
+    }
 
     /**
      * helper method to grow the capacity by 4
@@ -91,7 +89,7 @@ public class Library {
         Book[] newBag = new Book[books.length + sizeFactor];
 
         // copy over all elements from current to new array
-        for(int i = 0; i < books.length; i++){
+        for (int i = 0; i < books.length; i++) {
             newBag[i] = books[i];
         }
 
@@ -101,6 +99,7 @@ public class Library {
 
     /**
      * adds a book to the bag, grows bag if needed
+     *
      * @param book Book object to be added
      */
     public void add(Book book) {
@@ -114,27 +113,28 @@ public class Library {
 
     /**
      * removes a book if it exists
+     *
      * @param book Book object to be removed
      * @return true if book is removed successfully
-     *         false if book is not found
+     * false if book is not found
      */
     public boolean remove(Book book) {
         int indexOfBook = find(book);
 
         // case book not found
-        if(indexOfBook == -1) {
+        if (indexOfBook == -1) {
             return false;
         }
 
-        for(int i = 0; i < books.length; i++) {
+        for (int i = 0; i < books.length; i++) {
             // last elem will always be null by virtue of one being removed
-            if(i+1 == books.length) {
+            if (i + 1 == books.length) {
                 books[i] = null;
                 break;
             }
             // from the target index to end, shift elements to the left
-            if(i >= indexOfBook) {
-                books[i] = books[i+1];
+            if (i >= indexOfBook) {
+                books[i] = books[i + 1];
             }
         }
 
@@ -144,15 +144,16 @@ public class Library {
 
     /**
      * sets checkedOut attribute of Book to be true if possible
+     *
      * @param book Book object to be checked out
      * @return true if book is successfully checked out
-     *         false if book is not found or is already checked out
+     * false if book is not found or is already checked out
      */
     public boolean checkOut(Book book) {
         int indexOfBook = find(book);
 
         // if book not found or is already checked out
-        if(indexOfBook == -1 || books[indexOfBook].getCheckedOut()) {
+        if (indexOfBook == -1 || books[indexOfBook].getCheckedOut()) {
             return false;
         }
 
@@ -163,14 +164,15 @@ public class Library {
 
     /**
      * returns a book if possible
+     *
      * @param book Book object to be returned
      * @return true if book is successfully returned
-     *         false if book is not found
+     * false if book is not found
      */
     public boolean returns(Book book) {
         int indexOfBook = find(book);
 
-        if(indexOfBook == -1) {
+        if (indexOfBook == -1) {
             return false;
         }
 
@@ -181,6 +183,7 @@ public class Library {
 
     /**
      * checks if number of Books in Library is 0
+     *
      * @return true if numBooks = 0
      */
     public boolean isEmpty() {
@@ -204,7 +207,7 @@ public class Library {
      * deals with the PA command to print the list of books in the bag in current sequence
      */
     public void printDefault() {
-        if(isEmpty()) {                                     //first checks if books array is empty
+        if (isEmpty()) {                                     //first checks if books array is empty
             System.out.println(IoFields.invalidPrintLog);
         } else {
             System.out.println(IoFields.printLog);
@@ -214,10 +217,10 @@ public class Library {
     }
 
     /**
-     *    print the list of books by datePublished (ascending)
+     * print the list of books by datePublished (ascending)
      */
     public void printByDate() {
-        if(isEmpty()) {
+        if (isEmpty()) {
             System.out.println(IoFields.invalidPrintLog);
         } else {
             sortByDate();
@@ -231,7 +234,7 @@ public class Library {
      * print the list of books by number (ascending)
      */
     public void printByNumber() {
-        if(isEmpty()) {
+        if (isEmpty()) {
             System.out.println(IoFields.invalidPrintLog);
         } else {
             sortByNumber();
