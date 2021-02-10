@@ -166,45 +166,150 @@ public class Date {
 
     /**
      * Displays test cases for the isValid method and respective results
+     *
+     * @param args command line arguments
      */
     public static void main(String[] args) {
-        String[] validTests = {"02/29/2004", "02/29/2008", "12/31/1998", "04/30/2009", "02/25/2020"};
-        String[] invalidTests = {"02/29/2003", "02/29/1900", "04/31/2010", "12/20/2021", "15/11/2005", "01/01/1850", "01/00/2020", "05/36/2009"};
+        String[] validTests = {"02/29/2004", "12/31/1998", "04/30/2009", "02/25/2020", "12/11/2005", "05/21/2009"};
+        String[] invalidTests = {"02/29/2003", "02/29/1900", "04/31/2010", "12/20/2021", "01/01/1850", "15/11/2005", "01/00/2020", "05/36/2009"};
         String validTestCase = "test %s :: %s :: returns %s :: status passing%n";
         String invalidTestCase = "test %s :: %s :: returns %s :: status failing%n";
         boolean result;
-        boolean expected;
 
-        System.out.printf("%n-----------------------------------%n");
-        System.out.println("It should return true for each date");
-        System.out.println("-----------------------------------");
-        expected = true;
-        for (int i = 0; i < validTests.length; i++) {
+
+        System.out.println("Running test case #1, testing getFebruaryDays method");
+        int testCounter = 1;
+        for (int i = 0; i < 1; i++) {
 
             Date test = new Date(validTests[i]);
             result = test.isValid();
 
-            if (result == expected) {
-                System.out.printf(validTestCase, i + 1, validTests[i], result);
+            if (result == true) {
+                System.out.printf(validTestCase, testCounter, validTests[i], result);
             } else {
-                System.out.printf(invalidTestCase, i + 1, validTests[i], result);
+                System.out.printf(invalidTestCase, testCounter, validTests[i], result);
             }
+            testCounter++;
         }
-
-        System.out.printf("%n------------------------------------%n");
-        System.out.println("It should return false for each date");
-        System.out.println("------------------------------------");
-        expected = false;
-        for (int i = 0; i < invalidTests.length; i++) {
+        for (int i = 0; i < 2; i++) {
 
             Date test = new Date(invalidTests[i]);
             result = test.isValid();
 
-            if (result == expected) {
-                System.out.printf(validTestCase, i + 1, invalidTests[i], result);
+            if (result == false) {
+                System.out.printf(validTestCase, testCounter, invalidTests[i], result);
             } else {
-                System.out.printf(invalidTestCase, i + 1, invalidTests[i], result);
+                System.out.printf(invalidTestCase, testCounter, invalidTests[i], result);
             }
+            testCounter++;
+        }
+
+        System.out.println("Running test case #2, testing getDaysInMonth method");
+        testCounter = 1;
+        for (int i = 1; i < 3; i++) {
+
+            Date test = new Date(validTests[i]);
+            result = test.isValid();
+
+            if (result == true) {
+                System.out.printf(validTestCase, testCounter, validTests[i], result);
+            } else {
+                System.out.printf(invalidTestCase, testCounter, validTests[i], result);
+            }
+            testCounter++;
+        }
+        for (int i = 2; i < 3; i++) {
+
+            Date test = new Date(invalidTests[i]);
+            result = test.isValid();
+
+            if (result == false) {
+                System.out.printf(validTestCase, testCounter, invalidTests[i], result);
+            } else {
+                System.out.printf(invalidTestCase, testCounter, invalidTests[i], result);
+            }
+            testCounter++;
+        }
+
+        System.out.println("Running test case #3, testing isValidYear method");
+        testCounter = 1;
+        for (int i = 3; i < 4; i++) {
+
+            Date test = new Date(validTests[i]);
+            result = test.isValid();
+
+            if (result == true) {
+                System.out.printf(validTestCase, testCounter, validTests[i], result);
+            } else {
+                System.out.printf(invalidTestCase, testCounter, validTests[i], result);
+            }
+            testCounter++;
+        }
+        for (int i = 3; i < 5; i++) {
+
+            Date test = new Date(invalidTests[i]);
+            result = test.isValid();
+
+            if (result == false) {
+                System.out.printf(validTestCase, testCounter, invalidTests[i], result);
+            } else {
+                System.out.printf(invalidTestCase, testCounter, invalidTests[i], result);
+            }
+            testCounter++;
+        }
+
+        System.out.println("Running test case #4, testing isValidMonth method");
+        testCounter = 1;
+        for (int i = 4; i < 5; i++) {
+
+            Date test = new Date(validTests[i]);
+            result = test.isValid();
+
+            if (result == true) {
+                System.out.printf(validTestCase, testCounter, validTests[i], result);
+            } else {
+                System.out.printf(invalidTestCase, testCounter, validTests[i], result);
+            }
+            testCounter++;
+        }
+        for (int i = 5; i < 6; i++) {
+
+            Date test = new Date(invalidTests[i]);
+            result = test.isValid();
+
+            if (result == false) {
+                System.out.printf(validTestCase, testCounter, invalidTests[i], result);
+            } else {
+                System.out.printf(invalidTestCase, testCounter, invalidTests[i], result);
+            }
+            testCounter++;
+        }
+
+        System.out.println("Running test case #5, testing isValidDay method");
+        testCounter = 1;
+        for (int i = 5; i < 6; i++) {
+
+            Date test = new Date(validTests[i]);
+            result = test.isValid();
+
+            if (result == true) {
+                System.out.printf(validTestCase, testCounter, validTests[i], result);
+            } else {
+                System.out.printf(invalidTestCase, testCounter, validTests[i], result);
+            }
+            testCounter++;
+        }
+        for (int i = 6; i < 8; i++) {
+
+            Date test = new Date(invalidTests[i]);
+            result = test.isValid();
+
+            if (result == false) {
+                System.out.printf(validTestCase, testCounter, invalidTests[i], result);
+            } else {
+                System.out.printf(invalidTestCase, testCounter, invalidTests[i], result);
+            }
+            testCounter++;
         }
     }
 }
