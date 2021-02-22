@@ -3,16 +3,16 @@
   <ID>JAVA</ID>
   <OriginalElement />
   <nodes>
-    <node x="118.37500000000001" y="1614.0">RunProject1</node>
-    <node x="125.4636363636364" y="0.0">Date</node>
+    <node x="118.37500000000007" y="1614.0">RunProject1</node>
+    <node x="125.46363636363637" y="0.0">Date</node>
     <node x="8.872727272727303" y="370.0">Book</node>
     <node x="36.5" y="763.0">Library</node>
-    <node x="96.87500000000001" y="1222.0">Kiosk</node>
+    <node x="96.87500000000004" y="1222.0">Kiosk</node>
   </nodes>
   <notes />
   <edges>
     <edge source="Kiosk" target="Date">
-      <point x="86.25" y="-171.0" />
+      <point x="86.24999999999997" y="-171.0" />
       <point x="286.625" y="1202.0" />
       <point x="278.3727272727273" y="1202.0" />
       <point x="278.3727272727273" y="345.0" />
@@ -20,13 +20,13 @@
       <point x="71.25" y="160.0" />
     </edge>
     <edge source="Book" target="Date">
-      <point x="-62.0" y="-171.5" />
-      <point x="70.8727272727273" y="345.0" />
-      <point x="149.2136363636364" y="345.0" />
+      <point x="-62.00000000000003" y="-171.5" />
+      <point x="70.87272727272727" y="345.0" />
+      <point x="149.21363636363637" y="345.0" />
       <point x="-71.25" y="160.0" />
     </edge>
     <edge source="Kiosk" target="Book">
-      <point x="-86.25" y="-171.0" />
+      <point x="-86.25000000000003" y="-171.0" />
       <point x="114.12500000000001" y="1202.0" />
       <point x="26.0" y="1202.0" />
       <point x="26.0" y="738.0" />
@@ -40,13 +40,13 @@
       <point x="-49.60000000000001" y="171.5" />
     </edge>
     <edge source="Kiosk" target="Library">
-      <point x="-17.25" y="-171.0" />
+      <point x="-17.25000000000003" y="-171.0" />
       <point x="183.125" y="1202.0" />
       <point x="187.25" y="1202.0" />
       <point x="50.25" y="204.5" />
     </edge>
     <edge source="RunProject1" target="Kiosk">
-      <point x="0.0" y="-27.0" />
+      <point x="-2.8421709430404007E-14" y="-27.0" />
       <point x="0.0" y="171.0" />
     </edge>
   </edges>
